@@ -1,5 +1,5 @@
-# Shoot-em-Up
-# Shoot 'Em Up Game Development Tutorials for [Game Name]
+#KramEnsina
+# Shoot 'Em Up Game Development Tutorials 
 
 Welcome to the tutorial repository for developing a cool spaceship game. This repository was created to accompany a series of video tutorials on my YouTube channel link, where I provide step-by-step guidance on how to create your own side-scrolling shooter.
 
@@ -23,7 +23,7 @@ All content in this repository, including source code, graphics, and resources, 
 
 ## Start now!
 
-If you're ready to dive into shooter game development, follow the tutorials on our YouTube channel and use this repository as a valuable resource. I hope you enjoy learning and creating your own amazing game!
+If you're ready to dive into shooter game development, follow the tutorials on our YouTube channel (link: https://studio.youtube.com/channel/UCJurI89vIhzz4VcAaY0RT_w) and use this repository as a valuable resource. I hope you enjoy learning and creating your own amazing game!
 
 Be sure to subscribe to my channel to receive notifications about new tutorials and updates to this repository. If you have any questions or need help, don't hesitate to look in our community in the video comments.
 
