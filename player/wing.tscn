@@ -1,0 +1,185 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgu1ic7vd6i3o"]
+
+[ext_resource type="Script" path="res://player/scripts/wing.gd" id="1_fm8mw"]
+[ext_resource type="Texture2D" uid="uid://rpb13fadhr5y" path="res://player/wings/wing1.png" id="1_i8c8w"]
+[ext_resource type="Texture2D" uid="uid://dibpn8g1hmr7i" path="res://player/wings/wing2.png" id="2_ptoon"]
+[ext_resource type="Texture2D" uid="uid://dms5cl6whsqh2" path="res://player/wings/wing3.png" id="3_gpcud"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2md5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i8c8w")
+}],
+"loop": true,
+"name": &"wing_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ptoon")
+}],
+"loop": true,
+"name": &"wing_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gpcud")
+}],
+"loop": true,
+"name": &"wing_3",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_5o8pf"]
+resource_name = "w1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"wing_1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pos0:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-103, -196)]
+}
+
+[sub_resource type="Animation" id="Animation_hf0ou"]
+resource_name = "w2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"wing_2"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pos0:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-63, -195)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pos1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-120, -153)]
+}
+
+[sub_resource type="Animation" id="Animation_84jmk"]
+resource_name = "w3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"wing_3"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pos0:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51, -137)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pos1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-129, -313)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pos2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-168, -252)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vioaa"]
+_data = {
+"w1": SubResource("Animation_5o8pf"),
+"w2": SubResource("Animation_hf0ou"),
+"w3": SubResource("Animation_84jmk")
+}
+
+[node name="wing" type="Node2D"]
+script = ExtResource("1_fm8mw")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(-191, -346)
+sprite_frames = SubResource("SpriteFrames_l2md5")
+animation = &"wing_1"
+centered = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="pos0" type="Marker2D" parent="."]
+position = Vector2(-103, -196)
+rotation = -1.5708
+
+[node name="pos1" type="Marker2D" parent="."]
+position = Vector2(-129, -313)
+rotation = -1.5708
+
+[node name="pos2" type="Marker2D" parent="."]
+position = Vector2(-168, -252)
+rotation = -1.5708
+
+[node name="AnimPos" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vioaa")
+}
