@@ -2,7 +2,7 @@ extends Node
 
 var life = 100
 var max_life = 100
-var parameters = {"wingLevel":1,"rocketLevel":1}
+var parameters = {"wingLevel":1,"rocketLevel":3}
 
 
 func change_parameter(name:String,value:int):

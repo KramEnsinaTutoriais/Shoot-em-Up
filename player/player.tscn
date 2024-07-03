@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8xdtxhhyoyi8"]
+[gd_scene load_steps=7 format=3 uid="uid://b8xdtxhhyoyi8"]
 
 [ext_resource type="Script" path="res://player/scripts/player.gd" id="1_bh5up"]
 [ext_resource type="Texture2D" uid="uid://clbjjneg7cfp8" path="res://player/body.png" id="1_d2msk"]
 [ext_resource type="PackedScene" uid="uid://dgu1ic7vd6i3o" path="res://player/wing.tscn" id="3_sd47c"]
+[ext_resource type="PackedScene" uid="uid://c7686oi41852n" path="res://player/rocket.tscn" id="4_wphir"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_78fca"]
 animations = [{
@@ -21,6 +22,7 @@ height = 336.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_bh5up")
+metadata/_edit_vertical_guides_ = [60.0]
 
 [node name="body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_78fca")
@@ -43,3 +45,10 @@ scale = Vector2(1, -1)
 [node name="wingLeft" parent="." instance=ExtResource("3_sd47c")]
 unique_name_in_owner = true
 position = Vector2(-36, 88)
+
+[node name="rocket" parent="." instance=ExtResource("4_wphir")]
+z_index = -1
+position = Vector2(0, 179)
+Speed_R1 = 900
+Speed_R2 = 1500
+Speed_R3 = 2000
