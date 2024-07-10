@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7686oi41852n"]
+[gd_scene load_steps=11 format=3 uid="uid://c7686oi41852n"]
 
 [ext_resource type="Script" path="res://player/scripts/rocket.gd" id="1_bmfky"]
 [ext_resource type="Texture2D" uid="uid://qb3hjwd8exts" path="res://player/rockets/foguete1.png" id="2_k8pcp"]
 [ext_resource type="Texture2D" uid="uid://b7y4rruwfjnrm" path="res://player/rockets/foguete2.png" id="3_651je"]
 [ext_resource type="Texture2D" uid="uid://xrhnbl783kmw" path="res://player/rockets/fogue3.png" id="4_6rxgg"]
+[ext_resource type="Texture2D" uid="uid://bynt8lsvfnp6o" path="res://assets/vfx/smoke_05.png" id="5_iok7u"]
+[ext_resource type="Texture2D" uid="uid://dgprmm2ikm6rm" path="res://assets/vfx/sparkle1.png" id="6_cdct1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_38qfy"]
 animations = [{
@@ -32,10 +34,90 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_3ymwg"]
+offsets = PackedFloat32Array(0, 0.541284, 0.90367)
+colors = PackedColorArray(1, 0.992023, 0.264421, 1, 1, 0.514956, 0, 1, 1, 0.157705, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_45t8p"]
+gradient = SubResource("Gradient_3ymwg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8d4r"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 13.14
+radial_accel_max = 13.14
+scale_min = 0.01
+scale_max = 0.08
+color_ramp = SubResource("GradientTexture1D_45t8p")
+
 [node name="rocket" type="Node2D"]
 script = ExtResource("1_bmfky")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_38qfy")
-animation = &"R1"
+animation = &"R3"
+
+[node name="particle1" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+light_mask = 524288
+z_index = -1
+position = Vector2(0, 90)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_w8d4r")
+texture = ExtResource("5_iok7u")
+lifetime = 0.5
+interpolate = false
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="particle1"]
+position = Vector2(-4, -4)
+scale = Vector2(5.86719, 4.37109)
+color = Color(0.998929, 1, 0.748054, 1)
+energy = 2.0
+range_layer_min = -2
+range_layer_max = 2
+range_item_cull_mask = 524288
+texture = ExtResource("6_cdct1")
+
+[node name="particle2" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+light_mask = 524288
+z_index = -1
+position = Vector2(-45, 50)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_w8d4r")
+texture = ExtResource("5_iok7u")
+lifetime = 0.5
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="particle2"]
+position = Vector2(-4, -4)
+scale = Vector2(5.86719, 4.37109)
+color = Color(0.998929, 1, 0.748054, 1)
+energy = 2.0
+range_layer_min = -2
+range_layer_max = 2
+range_item_cull_mask = 524288
+texture = ExtResource("6_cdct1")
+
+[node name="particle3" type="GPUParticles2D" parent="."]
+light_mask = 524288
+z_index = -1
+position = Vector2(47, 48)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_w8d4r")
+texture = ExtResource("5_iok7u")
+lifetime = 0.5
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="particle3"]
+position = Vector2(-4, -4)
+scale = Vector2(5.86719, 4.37109)
+color = Color(0.998929, 1, 0.748054, 1)
+energy = 2.0
+range_layer_min = -2
+range_layer_max = 2
+range_item_cull_mask = 524288
+texture = ExtResource("6_cdct1")

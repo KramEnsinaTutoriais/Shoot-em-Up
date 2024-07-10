@@ -11,7 +11,7 @@ size = Vector2(1096, 137)
 [node name="player" parent="." instance=ExtResource("1_x6lkq")]
 
 [node name="Icon" type="Sprite2D" parent="."]
-z_index = -2
+z_index = -11
 position = Vector2(183, 298)
 scale = Vector2(39.8125, 22.2109)
 texture = ExtResource("2_hib8e")
