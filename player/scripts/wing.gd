@@ -15,14 +15,20 @@ func set_type_wing():
 			$anim.play("wing_1")
 			$AnimPos.play("w1")
 			AmountShootPoints = 1
+			$wingTipArea.set_collision_layer_value(1,false)
+			$wingTipArea.set_collision_mask_value(1,false)
 		2:
 			$anim.play("wing_2")
 			$AnimPos.play("w2")
 			AmountShootPoints = 2
+			$wingTipArea.set_collision_layer_value(1,false)
+			$wingTipArea.set_collision_mask_value(1,false)
 		3:
 			$anim.play("wing_3")
 			$AnimPos.play("w3")
 			AmountShootPoints = 3
+			$wingTipArea.set_collision_layer_value(1,true)
+			$wingTipArea.set_collision_mask_value(1,true)
 
 func Shoot():
 	

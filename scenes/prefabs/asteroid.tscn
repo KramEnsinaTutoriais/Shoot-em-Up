@@ -1,0 +1,161 @@
+[gd_scene load_steps=21 format=3 uid="uid://dnldk2pgvbjte"]
+
+[ext_resource type="Texture2D" uid="uid://cw0in0v0fswv3" path="res://assets/asteroid/asteroid0000.png" id="1_q1hus"]
+[ext_resource type="Texture2D" uid="uid://dym6tpmw4yw02" path="res://assets/asteroid/asteroid0001.png" id="2_edrmb"]
+[ext_resource type="Texture2D" uid="uid://dtk2iy33uxvku" path="res://assets/asteroid/asteroid0002.png" id="3_knqb8"]
+[ext_resource type="Texture2D" uid="uid://bmat6d3b4gy44" path="res://assets/asteroid/asteroid0003.png" id="4_tyw2f"]
+[ext_resource type="Texture2D" uid="uid://btqen0qhnbqjk" path="res://assets/asteroid/asteroid0004.png" id="5_f5k6n"]
+[ext_resource type="Texture2D" uid="uid://ca57gt4iva2c2" path="res://assets/asteroid/asteroid0005.png" id="6_bbhau"]
+[ext_resource type="Texture2D" uid="uid://ck0bhd7eq35ng" path="res://assets/asteroid/asteroid0006.png" id="7_biaml"]
+[ext_resource type="Texture2D" uid="uid://3hhvndg4lggu" path="res://assets/asteroid/asteroid0007.png" id="8_64pny"]
+[ext_resource type="Texture2D" uid="uid://dfnirebjn6ebm" path="res://assets/asteroid/asteroid0008.png" id="9_464a4"]
+[ext_resource type="Texture2D" uid="uid://0t8xde2evxyj" path="res://assets/asteroid/asteroid0009.png" id="10_dvygm"]
+[ext_resource type="Texture2D" uid="uid://c1csv5nuqcssg" path="res://assets/asteroid/asteroid0010.png" id="11_q33g7"]
+[ext_resource type="Texture2D" uid="uid://dxyn1i23xpsd5" path="res://assets/asteroid/asteroid0011.png" id="12_v0sd3"]
+[ext_resource type="Texture2D" uid="uid://cwop5pqp4mrjr" path="res://assets/asteroid/asteroid0012.png" id="13_yr0pm"]
+[ext_resource type="Texture2D" uid="uid://q2q3cl35b8wp" path="res://assets/asteroid/asteroid0013.png" id="14_4ugg8"]
+[ext_resource type="Texture2D" uid="uid://cc7i2y76jega2" path="res://assets/asteroid/asteroid0014.png" id="15_l4fsv"]
+[ext_resource type="Texture2D" uid="uid://oyppagi6cusk" path="res://assets/asteroid/asteroid0015.png" id="16_7tryx"]
+
+[sub_resource type="GDScript" id="GDScript_rmhpg"]
+resource_name = "asteroid"
+script/source = "extends Area2D
+
+var speed = 5
+var destroyed = false
+var life = 3
+
+func  _physics_process(delta):
+	
+	position.y += speed
+	
+func destroy():
+	if life <= 0:
+		destroyed = true
+		set_physics_process(false)
+		$TimerDeath.start(0.7);await $TimerDeath.timeout
+		queue_free()
+
+func _on_area_entered(area):
+	if area.is_in_group(\"wingTip\") and destroyed == false:
+		life = 0
+		set_anim(life)
+		
+	if area.is_in_group(\"bulletPlayer\") and destroyed == false:
+		
+		life -= 1
+		set_anim(life)
+	destroy()
+	
+func set_anim(AnimNum):
+	
+	match AnimNum:
+		2:
+			$animsprite.play(\"destroy1\")
+		1:
+			$animsprite.play(\"destroy2\")
+		0:
+			$animsprite.play(\"destroy3\")
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmgu8"]
+radius = 200.564
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_asx6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q1hus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_edrmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_knqb8")
+}],
+"loop": false,
+"name": &"destroy1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tyw2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f5k6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bbhau")
+}],
+"loop": false,
+"name": &"destroy2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_biaml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_64pny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_464a4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dvygm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_q33g7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_v0sd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_yr0pm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4ugg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_l4fsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7tryx")
+}],
+"loop": false,
+"name": &"destroy3",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x37nh"]
+radius = 178.885
+
+[node name="Asteroid" type="Area2D" groups=["asteroid"]]
+script = SubResource("GDScript_rmhpg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kmgu8")
+
+[node name="animsprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_asx6f")
+animation = &"destroy1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="TimerDeath" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.99997, 7.50002)
+scale = Vector2(35.9, 32.05)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_x37nh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

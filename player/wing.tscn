@@ -183,3 +183,9 @@ rotation = -1.5708
 libraries = {
 "": SubResource("AnimationLibrary_vioaa")
 }
+
+[node name="wingTipArea" type="Area2D" parent="." groups=["wingTip"]]
+position = Vector2(-191, -346)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wingTipArea"]
+polygon = PackedVector2Array(87, 46, 133, 0, 105, 58)
