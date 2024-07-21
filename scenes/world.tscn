@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8xdtxhhyoyi8" path="res://player/player.tscn" id="1_x6lkq"]
 [ext_resource type="Texture2D" uid="uid://b1nvd1uc5sdbe" path="res://icon.svg" id="2_hib8e"]
-[ext_resource type="PackedScene" uid="uid://dnldk2pgvbjte" path="res://scenes/prefabs/asteroid.tscn" id="3_wn65e"]
+[ext_resource type="PackedScene" uid="uid://boagtadykw4y6" path="res://scenes/prefabs/spawn_asteroid.tscn" id="4_4ip73"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygwyn"]
 size = Vector2(1096, 137)
@@ -24,5 +24,5 @@ position = Vector2(-558, -733)
 position = Vector2(538, -78.5)
 shape = SubResource("RectangleShape2D_ygwyn")
 
-[node name="Asteroid" parent="." instance=ExtResource("3_wn65e")]
-position = Vector2(0, -1798)
+[node name="spawnAsteroid" parent="." instance=ExtResource("4_4ip73")]
+position = Vector2(-1956, -1586)

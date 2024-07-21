@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://boagtadykw4y6"]
+
+[sub_resource type="GDScript" id="GDScript_gjw5y"]
+resource_name = "spawnAsteroid"
+script/source = "extends Node2D
+
+var delaySpawnMin = 0.5
+var delaySpawnMax = 1.0
+
+func create_asteroid():
+	
+	var minPosx = global_position.x
+	var MaxPosx = global_position.x + 1900
+	var posX = randi_range(minPosx,MaxPosx)
+	var scaleRand = randf_range(0.5,1.0)
+	posX += 200
+	var asteroid = preload(\"res://scenes/prefabs/asteroid.tscn\").instantiate()
+	get_parent().call_deferred(\"add_child\",asteroid)
+	asteroid.global_position = Vector2(posX,global_position.y)
+	asteroid.scale = Vector2(scaleRand,scaleRand)
+	
+func _on_timer_timeout():
+	create_asteroid()
+	$Timer.wait_time = randf_range(delaySpawnMin,delaySpawnMax)
+"
+
+[node name="spawnAsteroid" type="Node2D"]
+script = SubResource("GDScript_gjw5y")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
