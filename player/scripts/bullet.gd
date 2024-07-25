@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 10
+@export var damage = 10
 var speed = 1000
 var destroy = false
 
