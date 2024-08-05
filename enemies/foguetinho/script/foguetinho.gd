@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 5
+var speed = 12
 var destroyed = false
 var life = 30
 

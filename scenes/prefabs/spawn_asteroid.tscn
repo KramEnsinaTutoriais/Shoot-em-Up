@@ -10,7 +10,7 @@ var delaySpawnMax = 1.0
 func create_asteroid():
 	
 	var minPosx = global_position.x
-	var MaxPosx = global_position.x + 1900
+	var MaxPosx = global_position.x + 5800
 	var posX = randi_range(minPosx,MaxPosx)
 	var scaleRand = randf_range(0.5,1.0)
 	posX += 200

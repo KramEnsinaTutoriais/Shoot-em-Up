@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://d27fpcb5cmcjn"]
 
 [ext_resource type="PackedScene" uid="uid://b8xdtxhhyoyi8" path="res://player/player.tscn" id="1_x6lkq"]
+[ext_resource type="PackedScene" uid="uid://vix1h0334qeu" path="res://scenes/prefabs/spawn_enemie.tscn" id="2_d6u7n"]
 [ext_resource type="Texture2D" uid="uid://b1nvd1uc5sdbe" path="res://icon.svg" id="2_hib8e"]
 [ext_resource type="PackedScene" uid="uid://boagtadykw4y6" path="res://scenes/prefabs/spawn_asteroid.tscn" id="4_4ip73"]
-[ext_resource type="PackedScene" uid="uid://mwqwo87rjr8w" path="res://enemies/foguetinho/foguetinho.tscn" id="4_w8fhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygwyn"]
 size = Vector2(1096, 137)
@@ -26,7 +26,11 @@ position = Vector2(538, -78.5)
 shape = SubResource("RectangleShape2D_ygwyn")
 
 [node name="spawnAsteroid" parent="." instance=ExtResource("4_4ip73")]
-position = Vector2(-1956, -1586)
+position = Vector2(-4, -978)
 
-[node name="foguetinho" parent="." instance=ExtResource("4_w8fhs")]
-position = Vector2(7, -1434)
+[node name="spawnEnemie" parent="." instance=ExtResource("2_d6u7n")]
+position = Vector2(-24, -1001)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(3173, 1789)
+zoom = Vector2(0.3, 0.3)

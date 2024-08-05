@@ -4,6 +4,7 @@ var life = 100
 var max_life = 100
 var parameters = {"wingLevel":3,"rocketLevel":3}
 
+var lv_dificult = 0
 
 func change_parameter(name:String,value:int):
 	
