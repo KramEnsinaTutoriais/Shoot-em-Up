@@ -11,13 +11,14 @@ func create_enemie(minPos,MaxPos,target):
 	var enemy = preload("res://enemies/foguetinho/foguetinho.tscn").instantiate()
 	get_parent().call_deferred("add_child",enemy)
 	enemy.global_position = Vector2(posX,global_position.y)
+	enemy.targetDir = target
 	check_spawn()
 	
 func check_spawn():
 	
 	if Global.lv_dificult > 1:
 		$TimerSpawn.wait_time = 2
-			
+		
 	if CounterCreatedEnemies == 10:
 		Global.lv_dificult += 1
 		
@@ -41,7 +42,13 @@ func set_pattern():
 			add_child(delay)
 			for i in max_spawn:
 				delay.start(0.2);await (delay.timeout)
-				create_enemie(global_position.x,global_position.x+2200,"left")
+				match i :
+					0:
+						create_enemie(global_position.x,global_position.x+2200,"center")
+					1:
+						create_enemie(global_position.x,global_position.x+2200,"left")
+					2:
+						create_enemie(global_position.x,global_position.x+2200,"leftSpeed")
 			delay.queue_free()
 		2:#center
 			var delay = Timer.new()
@@ -55,7 +62,14 @@ func set_pattern():
 			add_child(delay)
 			for i in max_spawn:
 				delay.start(0.2);await (delay.timeout)
-				create_enemie((global_position.x+4200),(global_position.x+6500),"right")
+				
+				match i :
+					0:
+						create_enemie((global_position.x+4200),(global_position.x+6500),"center")
+					1:
+						create_enemie((global_position.x+4200),(global_position.x+6500),"right")
+					2:
+						create_enemie((global_position.x+4200),(global_position.x+6500),"rightSpeed")
 			delay.queue_free()
 
 
