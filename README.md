@@ -23,7 +23,7 @@ All content in this repository, including source code, graphics, and resources, 
 
 ## Start now!
 
-If you're ready to dive into shooter game development, follow the tutorials on our YouTube channel (link:https://www.youtube.com/channel/UCJurI89vIhzz4VcAaY0RT_w) and use this repository as a valuable resource. I hope you enjoy learning and creating your own amazing game!
+If you're ready to dive into shooter game development, follow the tutorials on our YouTube channel (link:https://www.youtube.com/@kramEnsina) and use this repository as a valuable resource. I hope you enjoy learning and creating your own amazing game!
 
 Be sure to subscribe to my channel to receive notifications about new tutorials and updates to this repository. If you have any questions or need help, don't hesitate to look in our community in the video comments.
 
